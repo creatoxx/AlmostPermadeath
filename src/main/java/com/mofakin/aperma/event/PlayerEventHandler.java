@@ -17,10 +17,10 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = ApermaMain.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class PlayerEventHandler {
 	
-	private static int initLifes = ApermaMain.configCommon.getInitLifes();
+    	private static int initLifes = ApermaMain.configCommon.getInitLifes();
     
 	@SubscribeEvent
-    public static void onLoggingIn(PlayerEvent.PlayerLoggedInEvent event) {
+    	public static void onLoggingIn(PlayerEvent.PlayerLoggedInEvent event) {
 		
 		PlayerEntity player = event.getPlayer();
 		GameType gameType = ((ServerPlayerEntity) player).gameMode.getGameModeForPlayer();
@@ -30,30 +30,30 @@ public class PlayerEventHandler {
 		
 		World level = player.level;
 		
-    	if(event.getEntity() instanceof ServerPlayerEntity && player != null) {
+    		if(event.getEntity() instanceof ServerPlayerEntity && player != null) {
     		
-    		int deaths = ((ServerPlayerEntity) player).getStats().getValue(Stats.CUSTOM.get(Stats.DEATHS));
-    		if(initLifes + player.experienceLevel - deaths <= 0) {
+    			int deaths = ((ServerPlayerEntity) player).getStats().getValue(Stats.CUSTOM.get(Stats.DEATHS));
+    			if(initLifes + player.experienceLevel - deaths <= 0) {
     			
-    			MinecraftServer server = level.getServer();
+    				MinecraftServer server = level.getServer();
     			
-    			if(server.isSingleplayer()) {
+    				if(server.isSingleplayer()) {
     				
-        			player.setGameMode(GameType.SPECTATOR);
-        			level.getGameRules().getRule(GameRules.RULE_SPECTATORSGENERATECHUNKS).set(false, server);  
-    			} else {
+        				player.setGameMode(GameType.SPECTATOR);
+        				level.getGameRules().getRule(GameRules.RULE_SPECTATORSGENERATECHUNKS).set(false, server);  
+    				} else {
     			
 					player.inventory.clearContent();
 					player.experienceLevel = 0;
 					player.totalExperience = 0;
 					((ServerPlayerEntity) player).getStats().setValue(player, Stats.CUSTOM.get(Stats.DEATHS), 0);
-    			}			
+    				}			
+    			}
     		}
     	}
-    }
 	
 	@SubscribeEvent
-    public static void onRespawn(PlayerEvent.PlayerRespawnEvent event) {
+    	public static void onRespawn(PlayerEvent.PlayerRespawnEvent event) {
 		
 		PlayerEntity player = event.getPlayer();
 		GameType gameType = ((ServerPlayerEntity) player).gameMode.getGameModeForPlayer();
@@ -65,28 +65,28 @@ public class PlayerEventHandler {
 		
 		((ServerPlayerEntity) player).getStats().sendStats((ServerPlayerEntity) player);
 		
-    	if(event.getEntity() instanceof ServerPlayerEntity && player != null) {
+    		if(event.getEntity() instanceof ServerPlayerEntity && player != null) {
     		
-    		int deaths = ((ServerPlayerEntity) player).getStats().getValue(Stats.CUSTOM.get(Stats.DEATHS));
+    			int deaths = ((ServerPlayerEntity) player).getStats().getValue(Stats.CUSTOM.get(Stats.DEATHS));
     		
-    		if(initLifes + player.experienceLevel - deaths <= 0) {
+    			if(initLifes + player.experienceLevel - deaths <= 0) {
     			
-    			MinecraftServer server = level.getServer();
+    				MinecraftServer server = level.getServer();
     			
-    			if(server.isSingleplayer()) {
+    				if(server.isSingleplayer()) {
     				
-        			player.setGameMode(GameType.SPECTATOR);
-        			level.getGameRules().getRule(GameRules.RULE_SPECTATORSGENERATECHUNKS).set(false, server);        			
-    			} else {
+        				player.setGameMode(GameType.SPECTATOR);
+        				level.getGameRules().getRule(GameRules.RULE_SPECTATORSGENERATECHUNKS).set(false, server);        			
+    				} else {
     			
 					player.inventory.clearContent();
 					player.experienceLevel = 0;
 					player.totalExperience = 0;
 					((ServerPlayerEntity) player).getStats().setValue(player, Stats.CUSTOM.get(Stats.DEATHS), 0);
-    			}	
+    				}	
+    			}
     		}
-    	}
-    }	
+    	}	
 	
 	@SubscribeEvent
 	public static void changeGamerules(EntityJoinWorldEvent event) {
