@@ -13,7 +13,7 @@ public class ApermaMain {
 	
 	public static final ConfigMain configCommon = new ConfigMain();
 	
-    public ApermaMain() {
-    	ModLoadingContext.get().registerConfig(Type.COMMON, ApermaMain.configCommon.getSpec());
-    }
+    	public ApermaMain() {
+    		ModLoadingContext.get().registerConfig(Type.COMMON, ApermaMain.configCommon.getSpec());
+    	}
 }
