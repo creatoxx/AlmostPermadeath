@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="Open Source"
+issueTrackerURL="http://my.issue.tracker/"
+[[mods]]
+modId="aperma" #must be the same as in MODID main file
+version="${file.jarVersion}"
+displayName="Almost Permadeath"
+updateJSONURL="http://myurl.me/"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/material-library"
+logoFile="examplemod.png"
+credits="Thanks to Mojang, and specially @diesieben07 on the Forge Forums"
+authors="Cratthorax aka CrEaToXx aka Mofakin"
+description='''Similar Mod to the one I did for Skyrim. https://www.nexusmods.com/skyrimspecialedition/mods/32416'''
+[[dependencies.aperma]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.aperma]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"      
