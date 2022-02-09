@@ -38,7 +38,7 @@ public class RenderEventHandler {
 	private static boolean doOnce = false;
 
 	@SubscribeEvent
-    public static void renderOverlay(RenderGameOverlayEvent.Post event) {
+    	public static void renderOverlay(RenderGameOverlayEvent.Post event) {
 		
 		Minecraft minecraft = Minecraft.getInstance();
 		
@@ -69,16 +69,17 @@ public class RenderEventHandler {
 				FontRenderer font = minecraft.font;
 				String deathSuffered = "" + deaths;
 				String lifesLeft = "" + lifes;
-		        int i1 = (screenWidth - font.width(lifesLeft)) / 2 + 95;
-		        int j1 = screenHeight - 30;
-		        if(ApermaMain.configCommon.getInitLifes() + player.experienceLevel - deaths > 0) {
-		        	deaths = player.getStats().getValue(Stats.CUSTOM.get(Stats.DEATHS));
-			        lifes = ApermaMain.configCommon.getInitLifes() + player.experienceLevel - deaths;
-		        } else {
-		        	lifes = ApermaMain.configCommon.getInitLifes();
-		        	player.getStats().setValue(player, Stats.CUSTOM.get(Stats.DEATHS), 0);
-		        	deaths = 0;
-		        }
+		        	int i1 = (screenWidth - font.width(lifesLeft)) / 2 + 95;
+		       		int j1 = screenHeight - 30;
+				
+		        	if(ApermaMain.configCommon.getInitLifes() + player.experienceLevel - deaths > 0) {
+		        		deaths = player.getStats().getValue(Stats.CUSTOM.get(Stats.DEATHS));
+			        	lifes = ApermaMain.configCommon.getInitLifes() + player.experienceLevel - deaths;
+		        	} else {
+		        		lifes = ApermaMain.configCommon.getInitLifes();
+		        		player.getStats().setValue(player, Stats.CUSTOM.get(Stats.DEATHS), 0);
+		        		deaths = 0;
+		        	}
 
 				if(deaths != 0) {
 					
@@ -89,18 +90,18 @@ public class RenderEventHandler {
 					matrixStack.pushPose();
 					
 					minecraft.getTextureManager().bind(FRAME_LOCATION);
-			        AbstractGui gui = new IngameGui(minecraft);
-			        gui.blit(matrixStack, i1 + 5, j1, 60, 23, 82, 22);
+			        	AbstractGui gui = new IngameGui(minecraft);
+			        	gui.blit(matrixStack, i1 + 5, j1, 60, 23, 82, 22);
 					
 					InventoryScreen.renderEntityInInventory(i1 + 16, j1 + 17, 7, (float)(0), (float) (0), skeleton);
 					
 					matrixStack.translate(0, 0, 100);
 					
-			        font.draw(matrixStack, deathSuffered, i1 + 5.0F, j1, 0);
-			        font.draw(matrixStack, deathSuffered, i1 + 3.0F, j1, 0);
-			        font.draw(matrixStack, deathSuffered, i1 + 4.0F, j1 + 1.0F, 0);
-			        font.draw(matrixStack, deathSuffered, i1 + 4.0F, j1 - 1.0F, 0);
-			        font.draw(matrixStack, deathSuffered, i1 + 4.0F, j1, -57297);
+			        	font.draw(matrixStack, deathSuffered, i1 + 5.0F, j1, 0);
+			        	font.draw(matrixStack, deathSuffered, i1 + 3.0F, j1, 0);
+			        	font.draw(matrixStack, deathSuffered, i1 + 4.0F, j1 + 1.0F, 0);
+			        	font.draw(matrixStack, deathSuffered, i1 + 4.0F, j1 - 1.0F, 0);
+			        	font.draw(matrixStack, deathSuffered, i1 + 4.0F, j1, -57297);
 
 					matrixStack.popPose();
 				}
@@ -109,46 +110,46 @@ public class RenderEventHandler {
 					
 					MatrixStack matrixStack = event.getMatrixStack();
 					PlayerEntity playerentity = !(minecraft.getCameraEntity() instanceof PlayerEntity) ? null : (PlayerEntity)minecraft.getCameraEntity();
-			        ItemStack itemstack = playerentity.getOffhandItem();
+			        	ItemStack itemstack = playerentity.getOffhandItem();
 			        
-			        int i2 = 0;
-			        int j2 = 0;
+			        	int i2 = 0;
+			        	int j2 = 0;
 			        
-			        if (!itemstack.isEmpty()) {
-			        	i2 = (screenWidth - font.width(deathSuffered)) / 2 - 94;
-			        	j2 = j1 - 15;
-			        } else {
-		        		i2 = (screenWidth - font.width(deathSuffered)) / 2 - 94;
-		        		j2 = j1 - 1;
-		        	}
+			        	if (!itemstack.isEmpty()) {
+			        		i2 = (screenWidth - font.width(deathSuffered)) / 2 - 94;
+			        		j2 = j1 - 15;
+			        	} else {
+		        			i2 = (screenWidth - font.width(deathSuffered)) / 2 - 94;
+		        			j2 = j1 - 1;
+		        		}
 			        
 					matrixStack.pushPose();
 					
-			        minecraft.getTextureManager().bind(FRAME_LOCATION);
-			        AbstractGui gui2 = new IngameGui(minecraft);
-			        gui2.blit(matrixStack, i2 - 23, j2 + 1, 60, 23, 82, 22);
+			        	minecraft.getTextureManager().bind(FRAME_LOCATION);
+			        	AbstractGui gui2 = new IngameGui(minecraft);
+			        	gui2.blit(matrixStack, i2 - 23, j2 + 1, 60, 23, 82, 22);
 			        
 					InventoryScreen.renderEntityInInventory(i2 - 12, j2 + 18, 7, (float)(0), (float) (0), minecraft.player);
 					
 					matrixStack.translate(0, 0, 100);
 					
-			        font.draw(matrixStack, lifesLeft, i2 - 3.5F, j2 + 1.0F, 0);
-			        font.draw(matrixStack, lifesLeft, i2 - 5.5F, j2 + 1.0F, 0);
-			        font.draw(matrixStack, lifesLeft, i2 - 4.5F, j2 + 2.0F, 0);
-			        font.draw(matrixStack, lifesLeft, i2 - 4.5F, j2, 0);
-			        font.draw(matrixStack, lifesLeft, i2 - 4.5F, j2 + 1.0F, -14614544);
+			        	font.draw(matrixStack, lifesLeft, i2 - 3.5F, j2 + 1.0F, 0);
+			        	font.draw(matrixStack, lifesLeft, i2 - 5.5F, j2 + 1.0F, 0);
+			        	font.draw(matrixStack, lifesLeft, i2 - 4.5F, j2 + 2.0F, 0);
+			        	font.draw(matrixStack, lifesLeft, i2 - 4.5F, j2, 0);
+			        	font.draw(matrixStack, lifesLeft, i2 - 4.5F, j2 + 1.0F, -14614544);
 			        
-			        String initialLifes = "" + ApermaMain.configCommon.getInitLifes(); 
+			        	String initialLifes = "" + ApermaMain.configCommon.getInitLifes(); 
 			        
-			        font.draw(matrixStack, initialLifes, i2 - 4.5F, j2 + 14.5F, 0);
-			        font.draw(matrixStack, initialLifes, i2 - 5.5F, j2 + 14.5F, 0);
-			        font.draw(matrixStack, initialLifes, i2 - 4.5F, j2 + 15.5F, 0);
-			        font.draw(matrixStack, initialLifes, i2 - 4.5F, j2 + 13.5F, 0);
-			        font.draw(matrixStack, initialLifes, i2 - 4.5F, j2 + 14.5F, -14614544);
+			        	font.draw(matrixStack, initialLifes, i2 - 4.5F, j2 + 14.5F, 0);
+			        	font.draw(matrixStack, initialLifes, i2 - 5.5F, j2 + 14.5F, 0);
+			        	font.draw(matrixStack, initialLifes, i2 - 4.5F, j2 + 15.5F, 0);
+			        	font.draw(matrixStack, initialLifes, i2 - 4.5F, j2 + 13.5F, 0);
+			        	font.draw(matrixStack, initialLifes, i2 - 4.5F, j2 + 14.5F, -14614544);
 
 					matrixStack.popPose();
 				}
 			}
 		}
-    }
+    	}
 }
